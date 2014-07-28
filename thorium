@@ -1,13 +1,48 @@
-#!/usr/bin/ruby
-require "thor"
+#!/usr/bin/env ruby
 
-class Thorium < Thor
+require 'thor'
+require 'thor/group'
 
-  desc "hello", "This command says hello to Thorium!"
-  def hello()
-    puts "Hello from Thorium!"
+module ApacheCLI
+  # Apache controller
+  class Apache < Thor
+    package_name 'Thorium | Apache'
+    include Thor::Actions
+
+    desc "start", "Starts apache"
+    def start ; run('sudo apachectl start') end
+
+    desc "stop", "Stops apache"
+    def stop ; run('sudo apachectl stop') end
+
+    desc "restart", "Restarts apache"
+    def restart ; run('sudo apachectl restart') end
+
+    desc "graceful", "Restarts apache gracefully"
+    def graceful ; run('sudo apachectl graceful') end
+
+    desc "status", "Apache status"
+    def status ; run('sudo apachectl status') end
   end
-
 end
 
-Thorium.start(ARGV)
+module ThoriumCLI
+  # Main task
+  class Thorium < Thor
+    package_name 'Thorium'
+    include ApacheCLI
+
+    desc "hello", "This command says hello to Thorium!"
+    def hello
+      name = ask("What is your name?")
+      puts "Hello #{name}! Hello from Thorium!"
+    end
+
+    # Note: subtasks need to be define first
+    desc "apache [SUBCOMMAND] [ARGS]", "Control Apache with ease!"
+    subcommand "apache", Apache
+  end
+end
+
+
+ThoriumCLI::Thorium.start(ARGV)
