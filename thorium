@@ -10,33 +10,26 @@ module ApacheCLI
     include Thor::Actions
 
     class_option :verbose, :type => :boolean, :default => 1
-    class_option :root, :type => :boolean, :default => 1
-    class_option :method,
-      :enum => ['apachectl', 'apache2ctl', 'service'],
-      :default => 'apachectl'
+    class_option :sudo, :type => :boolean, :default => 1
+    class_option :ctl_method, :enum => ['apachectl', 'apache2ctl', 'service'], :default => 'apachectl'
 
-    desc "start", "Starts apache"
-    def start    ; cmd_hdlr(__method__) end
-
-    desc "stop", "Stops apache"
-    def stop     ; cmd_hdlr(__method__) end
-
-    desc "restart", "Restarts apache"
-    def restart  ; cmd_hdlr(__method__) end
-
-    desc "graceful", "Restarts apache gracefully"
-    def graceful ; cmd_hdlr(__method__) end
-
-    desc "status", "Apache status"
-    def status   ; cmd_hdlr(__method__) end
+    desc "ctl [ARGS]", "Apache controller wrapper"
+    long_desc <<-LONGDESC
+      `start`     - Starts apache
+      `stop`      - Stops apache
+      `restart`   - Restarts apache
+      `graceful`  - Restarts apache gracefully
+      `status`    - Apache status
+      > $ ctl restart
+    LONGDESC
+    def ctl(*args)
+      command = "#{options[:ctl_method]} #{args * ' '}"
+      command = 'sudo ' + command if options[:root] == 1
+      run(command, {:verbose => options[:verbose], :capture => false})
+    end
 
     no_commands {
-      # Generic command handler
-      def cmd_hdlr(cmd)
-        command = "#{options[:method]} #{cmd}"
-        command = 'sudo ' + command if options[:root] == 1
-        run(command, {:verbose => options[:verbose], :capture => false})
-      end
+
     }
   end
 end
