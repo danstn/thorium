@@ -34,11 +34,35 @@ module ApacheCLI
   end
 end
 
+module GitCLI
+  class Git < Thor
+    package_name 'Thorium | Git'
+
+    include Thor::Actions
+
+    class_option :verbose, :type => :boolean, :default => 1
+
+    desc "list", "Apache controller wrapper"
+    def list
+      username = ask("Enter your username: ")
+      github_url = "https://api.github.com/users/#{username}/repos"
+      puts "Listing #{username}'s repositories..."
+      puts "----------------------------------"
+      # Get repos from github api
+      run("curl #{github_url} | grep -E '(ssh_url)|(clone_url)'", {:verbose => false, :capture => false})
+    end
+
+  end
+end
+
+
 module ThoriumCLI
   # Main tasks class
   class Thorium < Thor
     package_name 'Thorium'
+
     include ApacheCLI
+    include GitCLI
 
     class_option :verbose, :type => :boolean, :default => false
 
@@ -48,9 +72,11 @@ module ThoriumCLI
       puts "Hello #{name}! Hello from Thorium!"
     end
 
-    # Note: subtasks need to be define first
     desc "apache [SUBCOMMAND] [ARGS]", "Control Apache with ease!"
     subcommand "apache", Apache
+
+    desc "git [SUBCOMMAND] [ARGS]", "Git wrapper"
+    subcommand "git", Git
   end
 end
 
