@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+require "thor"
+
+class Thorium < Thor
+
+  desc "hello", "This command says hello to Thorium!"
+  def hello()
+    puts "Hello from Thorium!"
+  end
+
+end
+
+Thorium.start(ARGV)
