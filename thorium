@@ -4,33 +4,50 @@ require 'thor'
 require 'thor/group'
 
 module ApacheCLI
-  # Apache controller
   class Apache < Thor
     package_name 'Thorium | Apache'
+
     include Thor::Actions
 
+    class_option :verbose, :type => :boolean, :default => 1
+    class_option :root, :type => :boolean, :default => 1
+    class_option :method,
+      :enum => ['apachectl', 'apache2ctl', 'service'],
+      :default => 'apachectl'
+
     desc "start", "Starts apache"
-    def start ; run('sudo apachectl start') end
+    def start    ; cmd_hdlr(__method__) end
 
     desc "stop", "Stops apache"
-    def stop ; run('sudo apachectl stop') end
+    def stop     ; cmd_hdlr(__method__) end
 
     desc "restart", "Restarts apache"
-    def restart ; run('sudo apachectl restart') end
+    def restart  ; cmd_hdlr(__method__) end
 
     desc "graceful", "Restarts apache gracefully"
-    def graceful ; run('sudo apachectl graceful') end
+    def graceful ; cmd_hdlr(__method__) end
 
     desc "status", "Apache status"
-    def status ; run('sudo apachectl status') end
+    def status   ; cmd_hdlr(__method__) end
+
+    no_commands {
+      # Generic command handler
+      def cmd_hdlr(cmd)
+        command = "#{options[:method]} #{cmd}"
+        command = 'sudo ' + command if options[:root] == 1
+        run(command, {:verbose => options[:verbose], :capture => false})
+      end
+    }
   end
 end
 
 module ThoriumCLI
-  # Main task
+  # Main tasks class
   class Thorium < Thor
     package_name 'Thorium'
     include ApacheCLI
+
+    class_option :verbose, :type => :boolean, :default => false
 
     desc "hello", "This command says hello to Thorium!"
     def hello
