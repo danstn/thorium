@@ -6,7 +6,7 @@ Installation
 ------------
 Run the following in your terminal:
 
-`curl https://raw.githubusercontent.com/dzotokan/thorium/go/install.sh | sh`
+`curl https://raw.githubusercontent.com/dzotokan/thorium/go/install | sh`
 
 Documentation
 -------------
