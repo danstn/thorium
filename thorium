@@ -64,6 +64,8 @@ module ThoriumCLI
     include ApacheCLI
     include GitCLI
 
+    @@os = ENV['_system_type']
+
     class_option :verbose, :type => :boolean, :default => false
 
     desc "hello", "This command says hello to Thorium!"
