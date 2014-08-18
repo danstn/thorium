@@ -42,9 +42,9 @@ module GitCLI
 
     class_option :verbose, :type => :boolean, :default => 1
 
-    desc "list", "Apache controller wrapper"
+    desc "list", "List Github repositories"
     def list
-      username = ask("Enter your username: ")
+      username = ask("Github username: ")
       github_url = "https://api.github.com/users/#{username}/repos"
       puts "Listing #{username}'s repositories..."
       puts "----------------------------------"
