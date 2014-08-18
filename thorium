@@ -44,12 +44,18 @@ module GitCLI
 
     desc "list", "List Github repositories"
     def list
+      require 'json'
       username = ask("Github username: ")
       github_url = "https://api.github.com/users/#{username}/repos"
-      puts "Listing #{username}'s repositories..."
-      puts "----------------------------------"
+      github_repos_filepath = ENV['HOME'] + "/.thorium/github_repos_#{username}.json"
       # Get repos from github api
-      run("curl #{github_url} | grep -E '(ssh_url)|(clone_url)'", {:verbose => false, :capture => false})
+      get github_url, github_repos_filepath
+      # Save response in a file
+      response_json = File.read(github_repos_filepath)
+      response_hash = JSON.parse(response_json)
+      puts "#{username}'s repositories (name, ssh url, clone url)"
+      puts "====================================================="
+      print_table response_hash.map { |e| e.values_at("name", "ssh_url", "clone_url") }
     end
 
   end
