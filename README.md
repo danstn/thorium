@@ -1,5 +1,17 @@
-Workflow automation tool based on Thor
+Thorium
+=======
+Workflow automation tool based on Thor.
 
-$ chmod u+x thorium
+Installation
+------------
+Run the following in your terminal:
 
-$ ./thorium
+`curl https://raw.githubusercontent.com/dzotokan/thorium/go/install.sh | sh`
+
+Documentation
+-------------
+`thorium help`
+
+License
+-------
+Code is under the GPL3 license.
