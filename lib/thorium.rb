@@ -48,7 +48,7 @@ module GitCLI
     def list
       require 'json'
       require 'pp'
-      gh_uname = "dzotokan"# ask("Enter Github username: ")
+      gh_uname = ask("Enter Github username: ")
       puts "\nFetching Github repositories (#{gh_uname})..."
       puts "------------------------------------------"
       @repos = get_gh_repos(gh_uname).each_with_index.map do |e, i|
