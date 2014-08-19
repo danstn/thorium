@@ -1,14 +1,16 @@
 Thorium
 =======
-Workflow automation tool based on Thor.
+[![Gem Version](http://img.shields.io/gem/v/thorium.svg)][gem]
+
+Workflow automation toolkit.
 
 Installation
 ------------
-`gem install thorium`
+  `gem install thorium`
 
 Documentation
 -------------
-`thorium help`
+  `thorium help`
 
 License
 -------
