@@ -40,23 +40,40 @@ module GitCLI
 
     include Thor::Actions
 
+    @@gh_api_url = "https://api.github.com"
+
     class_option :verbose, :type => :boolean, :default => 1
 
-    desc "list", "List Github repositories"
+    desc "list", "Lists Github repositories"
     def list
       require 'json'
-      username = ask("Github username: ")
-      github_url = "https://api.github.com/users/#{username}/repos"
-      github_repos_filepath = ENV['HOME'] + "/.thorium/github_repos_#{username}.json"
-      # Get repos from github api
-      get github_url, github_repos_filepath
-      # Save response in a file
-      response_json = File.read(github_repos_filepath)
-      response_hash = JSON.parse(response_json)
-      puts "#{username}'s repositories (name, ssh url, clone url)"
-      puts "====================================================="
-      print_table response_hash.map { |e| e.values_at("name", "ssh_url", "clone_url") }
+      require 'pp'
+      gh_uname = "dzotokan"# ask("Enter Github username: ")
+      puts "\nFetching Github repositories (#{gh_uname})..."
+      puts "------------------------------------------"
+      @repos = get_gh_repos(gh_uname).each_with_index.map do |e, i|
+        e.values_at("name", "ssh_url", "clone_url").unshift("[#{i+1}]")
+      end
+      print_table @repos
     end
+
+    desc "clone", "Clones a repository from the list"
+    def clone
+      list
+      index = ask("Which repository would you like to clone?", :limited_to => ("1".."#{@repos.size}").to_a).to_i
+      protocol = ask("Select a protocol (ssh or https)?", :limited_to => ["s", "h"])
+      url = protocol == "s" ? @repos[index-1][2] : @repos[index-1][3]
+      run("git clone #{url}")
+    end
+
+    no_commands {
+      def get_gh_repos(uname)
+        url = "#{@@gh_api_url}/users/#{uname}/repos"
+        gh_repos_filepath = ENV['HOME'] + "/.thorium/gh_repos_#{uname}.json"
+        get url, gh_repos_filepath, :verbose => false
+        JSON.parse File.read(gh_repos_filepath)
+      end
+    }
 
   end
 end
