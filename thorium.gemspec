@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name           = 'thorium'
-  s.version        = '0.2.1'
+  s.version        = '0.2.2'
   s.date           = '2014-08-20'
   s.summary        = "thorium!"
   s.description    = "Workflow automation gem"
