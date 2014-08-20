@@ -12,6 +12,10 @@ Simple workflow automation toolkit.
 ## Installation
 
     gem install thorium
+    
+## Updates
+
+    gem update thorium    
 
 ## Usage
 
