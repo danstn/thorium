@@ -17,7 +17,7 @@ Simple workflow automation toolkit.
 
 ### Common
 
-List local public keys & generate if none
+List local public keys and prompt to generate a new one if none are present
 
     thorium pubkeys
 
