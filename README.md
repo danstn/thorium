@@ -17,17 +17,17 @@ Simple workflow automation toolkit.
 
 List local public keys & generate if none
 
-    $ thorium pubkeys
+    thorium pubkeys
 
 ### Git CLI
 
 List github repositories for a user
 
-    $ thorium git list
+    thorium git list
 
 List and clone github repositories for a user
 
-    $ thorium git clone
+    thorium git clone
   
 ### Apache CLI
   
