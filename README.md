@@ -1,4 +1,4 @@
-# Thorium
+#![alt text](https://cdn0.iconfinder.com/data/icons/typicons-2/24/th-small-32.png "Th90") Thorium
 
 [![Gem Version](http://img.shields.io/gem/v/thorium.svg)][gem]
 [![Code Climate](https://codeclimate.com/github/dzotokan/thorium/badges/gpa.svg)](https://codeclimate.com/github/dzotokan/thorium)
