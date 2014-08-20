@@ -1,12 +1,15 @@
+require_relative 'lib/thorium/version'
+
 Gem::Specification.new do |s|
   s.name           = 'thorium'
-  s.version        = '0.2.2'
+  s.version        = Thorium::VERSION
   s.date           = '2014-08-20'
-  s.summary        = "thorium!"
-  s.description    = "Workflow automation gem"
+  s.summary        = "Ruby gem for workflow automation"
+  s.description    = "Simple workflow automation toolkit."
   s.authors        = ["Daniel Stankevich"]
   s.email          = 'standeo@gmail.com'
-  s.files          = ["lib/thorium.rb"]
+  s.files          = Dir['lib/**/*.rb']
+  s.bindir         = 'bin'
   s.homepage       = 'http://rubygems.org/gems/thorium'
   s.license        = 'GPL3'
   s.add_runtime_dependency 'thor', '~> 0'
