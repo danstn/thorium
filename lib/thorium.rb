@@ -86,6 +86,7 @@ module ThoriumCLI
 
     include ApacheCLI
     include GitCLI
+    include Thor::Actions
 
     @@os = ENV['_system_type']
 
@@ -95,6 +96,11 @@ module ThoriumCLI
     def hello
       name = ask("What is your name?")
       puts "Hello #{name}! Hello from Thorium!"
+    end
+
+    desc "pubkeys", "Show all public keys available"
+    def pubkeys
+      run("cat ~/.ssh/*.pub", :verbose => false)
     end
 
     desc "apache [SUBCOMMAND] [ARGS]", "Control Apache with ease!"
