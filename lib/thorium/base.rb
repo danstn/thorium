@@ -29,7 +29,7 @@ module ThoriumCLI
         end
         answers = ["n"] + ("1".."#{public_keys.size}").to_a
         index = ask("Which key do you want in your clipboard (n for none)?", :green, :limited_to => answers)
-        run "pbcopy < #{public_keys[index.to_i]}" unless index == "n"
+        run "pbcopy < #{public_keys[index.to_i - 1]}" unless index == "n"
       else
         say "No public keys have been found.", :red
         generate_new = yes?("Do you want to generate a new one?", :green)
