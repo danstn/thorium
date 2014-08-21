@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.bindir         = 'bin'
   s.homepage       = 'http://rubygems.org/gems/thorium'
   s.license        = 'GPL3'
+  s.required_ruby_version = '>= 2.0.0'
   s.add_runtime_dependency 'thor', '~> 0'
   s.executables << 'thorium'
 end
