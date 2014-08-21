@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
 
 gem 'thor'
 gem 'rdoc'
+
+# Dependencies are specified in .gemspec
+gemspec
