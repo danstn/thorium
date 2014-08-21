@@ -1,6 +1,7 @@
 require 'thor'
 require 'thor/group'
 
+require_relative 'core/bootstrap.rb'
 require_relative 'version'
 require_relative 'tasks/common'
 require_relative 'tasks/apache'
@@ -27,9 +28,9 @@ module ThoriumCLI
           say "[#{i+1}] #{f}", :blue
           run "cat #{f}", verbose: false
         end
-        answers = ["n"] + ("1".."#{public_keys.size}").to_a
-        index = ask("Which key do you want in your clipboard (n for none)?", :green, :limited_to => answers)
-        run "pbcopy < #{public_keys[index.to_i - 1]}" unless index == "n"
+        options = {:limited_to => ("1".."#{public_keys.size}").to_a, :skip => ""}
+        index = ask("Which key do you want in your clipboard?", :green, options)
+        run "pbcopy < #{public_keys[index.to_i - 1]}" unless index == options[:skip]
       else
         say "No public keys have been found.", :red
         generate_new = yes?("Do you want to generate a new one?", :green)
