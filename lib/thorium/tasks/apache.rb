@@ -4,8 +4,8 @@ module ApacheCLI
 
     include Thor::Actions
 
-    class_option :verbose, :type => :boolean, :default => 1
-    class_option :sudo, :type => :boolean, :default => 1
+    class_option :verbose, :type => :boolean, :default => true
+    class_option :sudo, :type => :boolean, :default => true
     class_option :ctl_method, :enum => ['apachectl', 'apache2ctl', 'service'], :default => 'apachectl'
 
     desc "ctl [ARGS]", "Apache controller wrapper"
@@ -19,7 +19,7 @@ module ApacheCLI
     LONGDESC
     def ctl(*args)
       command = "#{options[:ctl_method]} #{args * ' '}"
-      command = 'sudo ' + command if options[:root] == 1
+      command = 'sudo ' + command if options[:sudo]
       run(command, {:verbose => options[:verbose], :capture => false})
     end
 
