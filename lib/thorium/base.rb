@@ -15,8 +15,10 @@ module ThoriumCLI
     include ApacheCLI
     include GitCLI
 
-    class_option :verbose, :type => :boolean, :default => false
+    class_option :verbose, :type => :boolean, :default => false, :aliases => :v
+
     @@os = ENV['_system_type']
+    @@alias = "th"
     @@skip = ""
 
     desc "pubkeys", "Simple public keys manipulation tool"
