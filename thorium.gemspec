@@ -3,7 +3,7 @@ require_relative 'lib/thorium/version'
 Gem::Specification.new do |s|
   s.name           = 'thorium'
   s.version        = Thorium::VERSION
-  s.date           = '2014-08-20'
+  s.date           = Date.today.to_s
   s.summary        = "Ruby gem for workflow automation"
   s.description    = "Simple workflow automation toolkit."
   s.authors        = ["Daniel Stankevich"]
