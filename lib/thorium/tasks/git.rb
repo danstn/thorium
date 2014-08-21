@@ -10,8 +10,8 @@ module GitCLI
     desc "list", "Lists Github repositories"
     def list
       require 'json'
-      require 'pp'
       gh_uname = ask("Enter Github username: ", :green)
+      abort if gh_uname.empty?
       puts "\nFetching Github repositories (#{gh_uname})..."
       puts "------------------------------------------"
       @repos = get_gh_repos(gh_uname).each_with_index.map do |e, i|
@@ -23,10 +23,13 @@ module GitCLI
     desc "clone", "Clones a repository from the list"
     def clone
       list
-      index = ask("Which repository would you like to clone?", :green, :limited_to => ("1".."#{@repos.size}").to_a).to_i
+      # Do not do anything if list is empty
+      ask_options = {limited_to: ("1".."#{@repos.size}").to_a, skip: ""}
+      answer = ask("Which repository would you like to clone?", :green, ask_options)
+      abort if answer == ask_options[:skip]
       protocol = ask("Select a protocol (ssh or https)?", :green, :limited_to => ["s", "h"])
-      url = protocol == "s" ? @repos[index-1][2] : @repos[index-1][3]
-      run("git clone #{url}")
+      url = protocol == "s" ? @repos[answer.to_i-1][2] : @repos[answer-1][3]
+      run "git clone #{url}"
     end
 
     no_commands {

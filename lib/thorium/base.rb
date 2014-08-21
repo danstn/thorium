@@ -17,20 +17,21 @@ module ThoriumCLI
 
     class_option :verbose, :type => :boolean, :default => false
     @@os = ENV['_system_type']
+    @@skip = ""
 
     desc "pubkeys", "Simple public keys manipulation tool"
     def pubkeys
       public_keys = Dir.glob(File.expand_path("~/.ssh") + "/*.pub")
       if public_keys.any?
-        say "\nPublic keys found:"
-        say "------------------"
+        puts "\nPublic keys found:"
+        puts "------------------"
         public_keys.each_with_index do |f, i|
           say "[#{i+1}] #{f}", :blue
           run "cat #{f}", verbose: false
         end
-        options = {:limited_to => ("1".."#{public_keys.size}").to_a, :skip => ""}
-        index = ask("Which key do you want in your clipboard?", :green, options)
-        run "pbcopy < #{public_keys[index.to_i - 1]}" unless index == options[:skip]
+        ask_options = {:limited_to => ("1".."#{public_keys.size}").to_a, skip: @@skip}
+        index = ask("Which key do you want in your clipboard?", :green, ask_options)
+        run "pbcopy < #{public_keys[index.to_i-1]}" unless index == ask_options[:skip]
       else
         say "No public keys have been found.", :red
         generate_new = yes?("Do you want to generate a new one?", :green)
