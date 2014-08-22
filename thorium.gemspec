@@ -1,21 +1,22 @@
 require_relative 'lib/thorium/version'
 
-Gem::Specification.new do |s|
-  s.name           = 'thorium'
-  s.version        = Thorium::VERSION
-  s.date           = Date.today.to_s
-  s.summary        = "Ruby gem for workflow automation"
-  s.description    = "Simple workflow automation toolkit."
-  s.authors        = ["Daniel Stankevich"]
-  s.email          = 'standeo@gmail.com'
-  s.files          = Dir['lib/**/*.rb']
-  s.bindir         = 'bin'
-  s.homepage       = 'http://rubygems.org/gems/thorium'
-  s.license        = 'GPL3'
-  s.required_ruby_version = '>= 2.0.0'
+Gem::Specification.new do |spec|
+  spec.name           = 'thorium'
+  spec.version        = Thorium::VERSION
+  spec.date           = Date.today.to_s
+  spec.summary        = "Ruby gem for workflow automation"
+  spec.description    = "Simple workflow automation toolkit."
+  spec.authors        = ["Daniel Stankevich"]
+  spec.email          = 'standeo@gmail.com'
+  spec.files          = Dir['lib/**/*.rb']
+  spec.bindir         = 'bin'
+  spec.homepage       = 'http://rubygemspec.org/gems/thorium'
+  spec.license        = 'GPL3'
+  spec.required_ruby_version = '>= 2.0.0'
 
-  s.add_runtime_dependency 'thor', '~> 0'
-  s.add_development_dependency 'rake'
+  spec.add_runtime_dependency 'thor', '~> 0'
+  spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
 
-  s.executables << 'thorium'
+  spec.executables << 'thorium'
 end
