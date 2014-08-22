@@ -32,6 +32,21 @@ module GitCLI
       run "git clone #{url}"
     end
 
+    desc "trello", "Integrates Git with Trello"
+    def trello
+      # @STUB: trello poc placeholder
+      # @TODO: Abstract and implement the placeholders below
+      yes?("Use current folder?", :green)
+      ask("--> Trello username?", :green)
+      ask("--> Trello password?", :green)
+      say "<LIST OF BOARDS WITH OPTIONS>"
+      ask("Which board would you like to integrate with? ", :green, :limited_to => ("1".."8").to_a)
+      yes?("Do you want to sync with a remote?", :green)
+      say "Syncing remote..."
+      say "Adding post-commit hook..."
+      say "All local commits will now be in Trello cards activity!"
+    end
+
     no_commands {
       # Fetches Github repositories for a given user
       def get_gh_repos(uname)
