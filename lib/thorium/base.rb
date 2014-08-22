@@ -19,32 +19,22 @@ module ThoriumCLI
     include ApacheCLI
     include GitCLI
 
-    class_option :verbose,
-                 type:    :boolean,
-                 default: false,
-                 aliases: :v
+    class_option :verbose, type: :boolean, default: false, aliases: :v
 
     desc 'pubkeys', 'Simple public keys manipulation tool'
     def pubkeys
       public_keys = Dir.glob(File.expand_path('~/.ssh') + '/*.pub')
       if public_keys.any?
-        puts '\nPublic keys found:'
+        puts '', 'Public keys found:'
         puts '------------------'
         print_keys public_keys
-        ask_options = { limited_to: (1..public_keys.size).to_a, skip: SKIP }
+        ask_options = { limited_to: ('1'..public_keys.size.to_s).to_a, skip: SKIP }
         index = ask('Which key do you want in your clipboard?', :green, ask_options)
-        run 'pbcopy < #{public_keys[index.to_i-1]}' if index != ask_options[:skip]
+        run "pbcopy < #{public_keys[index.to_i - 1]}" if index != ask_options[:skip]
       else
         say 'No public keys have been found.', :red
         generate_new = yes?('Do you want to generate a new one?', :green)
         run 'ssh-keygen' if generate_new
-      end
-    end
-
-    private def print_keys(public_keys)
-      public_keys.each_with_index do |f, i|
-        say "[#{i + 1}] #{f}", :blue
-        run "cat #{f}", verbose: false
       end
     end
 
@@ -55,5 +45,17 @@ module ThoriumCLI
     # Git subcommand
     desc 'git [SUBCOMMAND] [ARGS]', 'Git wrapper'
     subcommand 'git', Git
+
+    no_commands do
+
+      private
+
+      def print_keys(public_keys)
+        public_keys.each_with_index do |f, i|
+          say "[#{i + 1}] #{f}", :blue
+          run "cat #{f}", verbose: false
+        end
+      end
+    end
   end
 end
