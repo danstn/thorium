@@ -21,6 +21,11 @@ module ThoriumCLI
     @@alias = "th"
     @@skip = ""
 
+    @@variable = "very long variable I don't even understand why do I need it so long but I know that hound CI should warn about this shit"
+    @test = {
+      :variable => "with_hash_rocket and double quotes"
+    }
+
     desc "pubkeys", "Simple public keys manipulation tool"
     def pubkeys
       public_keys = Dir.glob(File.expand_path("~/.ssh") + "/*.pub")
