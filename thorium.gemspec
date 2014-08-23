@@ -4,13 +4,13 @@ Gem::Specification.new do |spec|
   spec.name           = 'thorium'
   spec.version        = Thorium::VERSION
   spec.date           = Date.today.to_s
-  spec.summary        = "Ruby gem for workflow automation"
-  spec.description    = "Simple workflow automation toolkit."
-  spec.authors        = ["Daniel Stankevich"]
+  spec.summary        = 'Ruby gem for workflow automation'
+  spec.description    = 'Simple workflow automation toolkit.'
+  spec.authors        = ['Daniel Stankevich']
   spec.email          = 'standeo@gmail.com'
   spec.files          = Dir['lib/**/*.rb']
   spec.bindir         = 'bin'
-  spec.homepage       = 'http://rubygemspec.org/gems/thorium'
+  spec.homepage       = 'http://rubygems.org/gems/thorium'
   spec.license        = 'GPL3'
   spec.required_ruby_version = '>= 2.0.0'
 
