@@ -8,7 +8,8 @@ require_relative 'tasks/apache'
 require_relative 'tasks/git'
 
 module ThoriumCLI
-  # top level comment here for Thorium
+  # Top level tasks for thorium
+  # Includes routines that do not require packaging of subcomands
   class Thorium < Thor
     package_name 'Thorium'
     SKIP = ''
@@ -21,7 +22,7 @@ module ThoriumCLI
 
     class_option :verbose, type: :boolean, default: false, aliases: :v
 
-    desc 'pubkeys', 'Simple public keys manipulation tool'
+    desc 'pubkeys', 'Simple public keys manipulation'
     def pubkeys
       public_keys = Dir.glob(File.expand_path('~/.ssh') + '/*.pub')
       if public_keys.any?
@@ -49,7 +50,7 @@ module ThoriumCLI
     no_commands do
 
       private
-
+      # Prints public keys with indexes
       def print_keys(public_keys)
         public_keys.each_with_index do |f, i|
           say "[#{i + 1}] #{f}", :blue

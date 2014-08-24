@@ -1,5 +1,6 @@
 module GitCLI
-  # top level documentation for Git
+  # Git tasks package
+  # Listing and cloning of repositories (Github support included)
   class Git < Thor
     package_name 'Thorium | Git'
     GH_API_URL = 'https://api.github.com'
