@@ -39,6 +39,8 @@ module GitCLI
     end
 
     no_commands do
+
+      private
       # Fetches Github repositories for a given user
       def get_gh_repos(uname)
         url = "#{GH_API_URL}/users/#{uname}/repos"
