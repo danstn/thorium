@@ -1,6 +1,7 @@
 #![alt text](https://cdn0.iconfinder.com/data/icons/typicons-2/24/th-small-32.png "Th90") Thorium
 
 [![Gem Version](http://img.shields.io/gem/v/thorium.svg)][gem]
+[![Build Status](https://travis-ci.org/dzotokan/thorium.svg?branch=master)](https://travis-ci.org/dzotokan/thorium)
 [![Code Climate](https://codeclimate.com/github/dzotokan/thorium/badges/gpa.svg)](https://codeclimate.com/github/dzotokan/thorium)
 [![Dependency Status](https://gemnasium.com/dzotokan/thorium.svg)](https://gemnasium.com/dzotokan/thorium)
 
