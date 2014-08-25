@@ -44,9 +44,9 @@ module GitCLI
       # @TODO: Abstract and implement the placeholders below
       current_folder = yes?("Use current folder?", :green)
       trello_uname = ask("--> Trello username?", :green)
-      trello_paswd = ask("--> Trello password?", :echo => false, :green)
+      trello_paswd = ask("--> Trello password?", :green, echo: false)
       say "<LIST OF BOARDS WITH OPTIONS>"
-      ask("Choose a baord? ", :green, :limited_to => ("1".."8").to_a)
+      ask("Choose a board? ", :green, :limited_to => ("1".."8").to_a)
       yes?("Do you want to sync with a remote?", :green)
       say "Syncing remote..."
       say "Adding post-commit hook..."
