@@ -31,7 +31,7 @@ module ThoriumCLI
         print_keys public_keys
         ask_options = { limited_to: ('1'..public_keys.size.to_s).to_a, skip: SKIP }
         index = ask('Which key do you want in your clipboard?', :green, ask_options)
-        run "pbcopy < #{public_keys[index.to_i - 1]}" if index != ask_options[:skip]
+        copy_to_clipboard public_keys[index.to_i - 1] if index != ask_options[:skip]
       else
         say 'No public keys have been found.', :red
         generate_new = yes?('Do you want to generate a new one?', :green)
@@ -55,6 +55,14 @@ module ThoriumCLI
         public_keys.each_with_index do |f, i|
           say "[#{i + 1}] #{f}", :blue
           run "cat #{f}", verbose: false
+        end
+      end
+
+      def copy_to_clipboard(content)
+        if run 'which pbcopy > /dev/null', verbose: false
+          run "pbcopy < #{content}"
+        else
+          say 'pbcopy is not installed, cannot copy to clipboard', :red
         end
       end
     end
