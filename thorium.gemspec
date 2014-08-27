@@ -14,9 +14,9 @@ Gem::Specification.new do |spec|
   spec.license        = 'GPL3'
   spec.required_ruby_version = '>= 2.0.0'
 
-  spec.add_runtime_dependency 'thor', '~> 0'
-  spec.add_development_dependency 'rake', '~> 0'
-  spec.add_development_dependency 'rspec', '~> 0'
+  spec.add_runtime_dependency 'thor', '>= 0.19'
+  spec.add_development_dependency 'rake', '>= 10.0'
+  spec.add_development_dependency 'rspec', '>= 3.0'
 
   spec.executables << 'thorium'
 end
