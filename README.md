@@ -49,7 +49,9 @@ List and clone github repositories for a user
     [4]  git.github.io  git@github.com:git/git.github.io.git  https://github.com/git/git.github.io.git
     [5]  gitscm-old     git@github.com:git/gitscm-old.git     https://github.com/git/gitscm-old.git
     [6]  hello-world    git@github.com:git/hello-world.git    https://github.com/git/hello-world.git
-    Which repository would you like to clone? (Enter to skip) [1, 2, 3, 4, 5, 6]    
+    Which repository would you like to clone? (Enter to skip) [1, 2, 3, 4, 5, 6] 6
+    Select a protocol (ssh or https)? [s, h] s
+    
   
 ### Apache CLI
   
