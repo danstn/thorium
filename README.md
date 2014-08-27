@@ -26,7 +26,7 @@ List local public keys and prompt to generate a new one if none are present
 
     thorium pubkeys
 
-### Git CLI
+### Github CLI
 
 List github repositories for a user
 
