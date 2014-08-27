@@ -3,6 +3,7 @@ require 'thor/group'
 
 require_relative 'core/bootstrap.rb'
 require_relative 'version'
+require_relative 'tasks/configurator'
 require_relative 'tasks/common'
 require_relative 'tasks/apache'
 require_relative 'tasks/git'
@@ -37,6 +38,24 @@ module ThoriumCLI
         generate_new = yes?('Do you want to generate a new one?', :green)
         run 'ssh-keygen' if generate_new
       end
+    end
+
+    desc 'fixperms', 'Permissions fixer'
+    def fixperms
+      system_configurator = ConfiguratorCLI::System.new
+      system_configurator.configure :permissions
+      # puts ConfiguratorCLI::System.configure :permissions
+      # if --config or no fixperms file
+      #   run fixperms configurator
+      #   config_permissons:
+      #     - ask for user/group
+      #     - ask for allow-dir (default to /srv)
+      # else
+      #   run permission fixer: fix_permission
+      #     - read user/group
+      #     - read allow-dir
+      #     - disallow anything but /srv, /home, /var/www
+      #     - recursively fix permissions
     end
 
     # Apache subcommand
