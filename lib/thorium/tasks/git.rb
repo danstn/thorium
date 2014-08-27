@@ -33,7 +33,7 @@ module GitCLI
       url = if protocol == 's'
         @repos[answer.to_i - 1][2]
       else
-        @repos[answer - 1][3]
+        @repos[answer.to_i - 1][3]
       end
       run "git clone #{url}"
     end
