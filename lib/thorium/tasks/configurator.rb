@@ -24,6 +24,11 @@ module ConfiguratorCLI
       answer = ask('Safe directory:', :green, ask_options)
     end
 
+    desc 'sqlite', 'SQLite configuration file'
+    def sqlite
+      `touch ~/.sqliterc && echo '.headers ON' >> ~/.sqliterc && echo '.mode column' >> ~/.sqliterc`
+    end
+
     no_commands {}
 
   end

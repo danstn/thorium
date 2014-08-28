@@ -66,6 +66,10 @@ module ThoriumCLI
     desc 'git [SUBCOMMAND] [ARGS]', 'Git wrapper'
     subcommand 'git', Git
 
+    # Git subcommand
+    desc 'config [SUBCOMMAND] [ARGS]', 'Configurator'
+    subcommand 'config', Configurator
+
     no_commands do
 
       private
