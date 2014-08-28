@@ -5,13 +5,13 @@ module GitCLI
     package_name 'Thorium | Git'
     GH_API_URL = 'https://api.github.com'
 
+    require 'json'
     include Thor::Actions
 
     class_option :verbose, type: :boolean, default: 1
 
     desc 'list', 'Lists Github repositories'
     def list
-      require 'json'
       gh_uname = ask('Enter Github username: ', :green)
       abort if gh_uname.empty?
       puts "\nFetching Github repositories (#{gh_uname})..."
