@@ -22,6 +22,11 @@ module ThoriumCLI
 
     class_option :verbose, type: :boolean, default: false, aliases: :v
 
+    desc 'pubkey', 'Get id_rsa.pub (default) in your clipboard'
+    def pubkey
+      copy_to_clipboard Dir.glob(File.expand_path('~/.ssh/id_rsa.pub')).first
+    end
+
     desc 'pubkeys', 'Simple public keys manipulation'
     def pubkeys
       public_keys = Dir.glob(File.expand_path('~/.ssh') + '/*.pub')
@@ -60,7 +65,8 @@ module ThoriumCLI
 
       def copy_to_clipboard(content)
         if run 'which pbcopy > /dev/null', verbose: false
-          run "pbcopy < #{content}"
+          run "pbcopy < #{content}", verbose: false
+          say "---> `#{content}` copied to your clipboard.", :blue
         else
           say 'pbcopy is not installed, cannot copy to clipboard', :red
         end
