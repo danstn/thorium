@@ -14,6 +14,10 @@ Simple workflow automation toolkit.
 
     gem install thorium
     
+With an alias included (optional):
+
+    gem install thorium && alias th=thorium
+    
 ## Updates
 
     gem update thorium    
