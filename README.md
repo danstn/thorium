@@ -29,6 +29,15 @@ With an alias included (optional):
 List local public keys and prompt to generate a new one if none are present
 
     thorium pubkeys
+    
+Copy the default `~/.ssh/id_rsa.pub` to your clipboard
+
+    thorium pubkey                                                                                               
+
+#### Example
+
+    $ thorium pubkey                                                                                               
+    ---> `~/.ssh/id_rsa.pub` copied to your clipboard.
 
 ### Github CLI
 
