@@ -10,7 +10,7 @@ module GitCLI
 
     class_option :verbose, type: :boolean, default: 1
 
-    desc 'list', 'Lists Github repositories'
+    desc 'list', 'Lists repositories (Github)'
     def list
       gh_uname = ask('Enter Github username: ', :green)
       abort if gh_uname.empty?
@@ -22,7 +22,7 @@ module GitCLI
       print_table @repos
     end
 
-    desc 'clone', 'Clones a repository from the list'
+    desc 'clone', 'Clones a repository from the list (Github)'
     def clone
       list
       # Do not do anything if list is empty

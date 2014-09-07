@@ -22,7 +22,7 @@ module ThoriumCLI
 
     class_option :verbose, type: :boolean, default: false, aliases: :v
 
-    desc 'pubkey', 'Get id_rsa.pub (default) in your clipboard'
+    desc 'pubkey', 'Copy `id_rsa.pub` (default) in your clipboard'
     def pubkey
       path = '~/.ssh/id_rsa.pub'
       file = Dir.glob(File.expand_path(path)).first
@@ -52,7 +52,7 @@ module ThoriumCLI
     end
 
     # Apache subcommand
-    desc 'apache [SUBCOMMAND] [ARGS]', 'Control Apache with ease!'
+    desc 'apache [SUBCOMMAND] [ARGS]', 'Apache controller'
     subcommand 'apache', Apache
 
     # Git subcommand
