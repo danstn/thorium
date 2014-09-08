@@ -3,6 +3,7 @@ require 'thor/group'
 
 require_relative 'core/bootstrap.rb'
 require_relative 'version'
+require_relative 'tasks/configurator'
 require_relative 'tasks/common'
 require_relative 'tasks/apache'
 require_relative 'tasks/git'
@@ -12,11 +13,13 @@ module ThoriumCLI
   # Includes routines that do not require packaging of subcomands
   class Thorium < Thor
     package_name 'Thorium'
+
     SKIP = ''
     ALIAS = 'th'
     OS = ENV['_system_type']
 
     include Thor::Actions
+    include ConfigCLI
     include ApacheCLI
     include GitCLI
 
@@ -51,6 +54,7 @@ module ThoriumCLI
       end
     end
 
+
     # Apache subcommand
     desc 'apache [SUBCOMMAND] [ARGS]', 'Apache controller'
     subcommand 'apache', Apache
@@ -58,6 +62,11 @@ module ThoriumCLI
     # Git subcommand
     desc 'git [SUBCOMMAND] [ARGS]', 'Git wrapper'
     subcommand 'git', Git
+
+    # Runcom subcommand
+    desc 'runcom [SUBCOMMAND] [ARGS]', 'Runcom files'
+    subcommand 'runcom', Runcom
+
 
     no_commands do
 
@@ -86,6 +95,7 @@ module ThoriumCLI
           say 'pbcopy is not installed, cannot copy to clipboard', :red
         end
       end
+
     end
   end
 end
