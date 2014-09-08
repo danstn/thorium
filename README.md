@@ -36,7 +36,8 @@ Copy the default `~/.ssh/id_rsa.pub` to your clipboard
 
 #### Example
 
-    $ thorium pubkey                                                                                               
+    $ thorium pubkey                                  
+    Use `thorium pubkeys` if you want to select a specific key.
     ---> `~/.ssh/id_rsa.pub` copied to your clipboard.
 
 ### Github CLI
