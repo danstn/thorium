@@ -1,8 +1,6 @@
 module ConfigCLI
-
   # RC files setup
   class Runcom < Thor
-
     package_name 'Thorium | Runcom'
 
     TH_URL = "https://raw.githubusercontent.com/dzotokan/thorium/master"
@@ -14,8 +12,8 @@ module ConfigCLI
     desc 'all', 'Run all rc files'
     def all
       [:vim, :sqlite].each do |m|
-        say "--> Running rc for: #{m.to_s}", :yellow
-        self::send m
+        say "--> Running rc for: #{m}", :yellow
+        send m
       end
     end
 
@@ -32,14 +30,9 @@ module ConfigCLI
     end
 
     no_commands do
-
       def say_rc_fetch
         say "--> Fetching data from remote...", :blue
       end
-
     end
-
   end
-
 end
-

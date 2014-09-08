@@ -54,7 +54,6 @@ module ThoriumCLI
       end
     end
 
-
     # Apache subcommand
     desc 'apache [SUBCOMMAND] [ARGS]', 'Apache controller'
     subcommand 'apache', Apache
@@ -66,7 +65,6 @@ module ThoriumCLI
     # Runcom subcommand
     desc 'runcom [SUBCOMMAND] [ARGS]', 'Runcom files'
     subcommand 'runcom', Runcom
-
 
     no_commands do
 
