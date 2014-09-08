@@ -63,10 +63,6 @@ module ThoriumCLI
     desc 'git [SUBCOMMAND] [ARGS]', 'Git wrapper'
     subcommand 'git', Git
 
-    # Configurator subcommand
-    desc 'config [SUBCOMMAND] [ARGS]', 'Configurator'
-    subcommand 'config', Config
-
     # Runcom subcommand
     desc 'runcom [SUBCOMMAND] [ARGS]', 'Runcom files'
     subcommand 'runcom', Runcom
