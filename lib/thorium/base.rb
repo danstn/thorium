@@ -53,24 +53,6 @@ module ThoriumCLI
       end
     end
 
-    desc 'fixperms', 'Permissions fixer'
-    def fixperms
-      system_configurator = ConfigCLI::Config.new
-      system_configurator.configure :permissions
-      # puts ConfiguratorCLI::System.configure :permissions
-      # if --config or no fixperms file
-      #   run fixperms configurator
-      #   config_permissons:
-      #     - ask for user/group
-      #     - ask for allow-dir (default to /srv)
-      # else
-      #   run permission fixer: fix_permission
-      #     - read user/group
-      #     - read allow-dir
-      #     - disallow anything but /srv, /home, /var/www
-      #     - recursively fix permissions
-    end
-
     # Apache subcommand
     desc 'apache [SUBCOMMAND] [ARGS]', 'Apache controller'
     subcommand 'apache', Apache
@@ -85,8 +67,6 @@ module ThoriumCLI
 
     # rc files setup
     desc 'runcom [SUBCOMMAND] [ARGS]', 'Runcom files'
-    # options :all => :boolean, :multiple => :boolean
-    option :append, :type => :boolean, :aliases => :rc
     subcommand 'runcom', Runcom
 
     no_commands do
