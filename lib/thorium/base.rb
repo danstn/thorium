@@ -13,6 +13,7 @@ module ThoriumCLI
   # Includes routines that do not require packaging of subcomands
   class Thorium < Thor
     package_name 'Thorium'
+
     SKIP = ''
     ALIAS = 'th'
     OS = ENV['_system_type']
@@ -53,6 +54,7 @@ module ThoriumCLI
       end
     end
 
+
     # Apache subcommand
     desc 'apache [SUBCOMMAND] [ARGS]', 'Apache controller'
     subcommand 'apache', Apache
@@ -61,13 +63,14 @@ module ThoriumCLI
     desc 'git [SUBCOMMAND] [ARGS]', 'Git wrapper'
     subcommand 'git', Git
 
-    # Git subcommand
+    # Configurator subcommand
     desc 'config [SUBCOMMAND] [ARGS]', 'Configurator'
     subcommand 'config', Config
 
-    # rc files setup
+    # Runcom subcommand
     desc 'runcom [SUBCOMMAND] [ARGS]', 'Runcom files'
     subcommand 'runcom', Runcom
+
 
     no_commands do
 
@@ -96,6 +99,7 @@ module ThoriumCLI
           say 'pbcopy is not installed, cannot copy to clipboard', :red
         end
       end
+
     end
   end
 end
