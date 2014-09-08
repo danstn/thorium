@@ -18,6 +18,7 @@ module ThoriumCLI
     OS = ENV['_system_type']
 
     include Thor::Actions
+    include ConfigCLI
     include ApacheCLI
     include GitCLI
 
@@ -54,7 +55,7 @@ module ThoriumCLI
 
     desc 'fixperms', 'Permissions fixer'
     def fixperms
-      system_configurator = ConfiguratorCLI::System.new
+      system_configurator = ConfigCLI::Config.new
       system_configurator.configure :permissions
       # puts ConfiguratorCLI::System.configure :permissions
       # if --config or no fixperms file
@@ -80,7 +81,13 @@ module ThoriumCLI
 
     # Git subcommand
     desc 'config [SUBCOMMAND] [ARGS]', 'Configurator'
-    subcommand 'config', Configurator
+    subcommand 'config', Config
+
+    # rc files setup
+    desc 'runcom [SUBCOMMAND] [ARGS]', 'Runcom files'
+    # options :all => :boolean, :multiple => :boolean
+    option :append, :type => :boolean, :aliases => :rc
+    subcommand 'runcom', Runcom
 
     no_commands do
 
