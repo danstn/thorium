@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    thorium (0.3.4)
+    thorium (0.3.7)
       thor (>= 0.19)
 
 GEM

@@ -5,13 +5,13 @@ module GitCLI
     package_name 'Thorium | Git'
     GH_API_URL = 'https://api.github.com'
 
+    require 'json'
     include Thor::Actions
 
     class_option :verbose, type: :boolean, default: 1
 
-    desc 'list', 'Lists Github repositories'
+    desc 'list', 'Lists repositories (Github)'
     def list
-      require 'json'
       gh_uname = ask('Enter Github username: ', :green)
       abort if gh_uname.empty?
       puts "\nFetching Github repositories (#{gh_uname})..."
@@ -22,7 +22,7 @@ module GitCLI
       print_table @repos
     end
 
-    desc 'clone', 'Clones a repository from the list'
+    desc 'clone', 'Clones a repository from the list (Github)'
     def clone
       list
       # Do not do anything if list is empty
@@ -33,7 +33,7 @@ module GitCLI
       url = if protocol == 's'
         @repos[answer.to_i - 1][2]
       else
-        @repos[answer - 1][3]
+        @repos[answer.to_i - 1][3]
       end
       run "git clone #{url}"
     end

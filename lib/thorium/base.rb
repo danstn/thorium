@@ -23,6 +23,19 @@ module ThoriumCLI
 
     class_option :verbose, type: :boolean, default: false, aliases: :v
 
+    desc 'pubkey', 'Copy `id_rsa.pub` (default) in your clipboard'
+    def pubkey
+      path = '~/.ssh/id_rsa.pub'
+      file = Dir.glob(File.expand_path(path)).first
+      if file
+        say "Use `thorium pubkeys` if you want to select a specific key.", :yellow
+        copy_to_clipboard file
+      else
+        say "File `#{path}` has not been found.", :red
+        generate_pubkey?
+      end
+    end
+
     desc 'pubkeys', 'Simple public keys manipulation'
     def pubkeys
       public_keys = Dir.glob(File.expand_path('~/.ssh') + '/*.pub')
@@ -35,8 +48,7 @@ module ThoriumCLI
         copy_to_clipboard public_keys[index.to_i - 1] if index != ask_options[:skip]
       else
         say 'No public keys have been found.', :red
-        generate_new = yes?('Do you want to generate a new one?', :green)
-        run 'ssh-keygen' if generate_new
+        generate_pubkey?
       end
     end
 
@@ -59,7 +71,7 @@ module ThoriumCLI
     end
 
     # Apache subcommand
-    desc 'apache [SUBCOMMAND] [ARGS]', 'Control Apache with ease!'
+    desc 'apache [SUBCOMMAND] [ARGS]', 'Apache controller'
     subcommand 'apache', Apache
 
     # Git subcommand
@@ -73,6 +85,13 @@ module ThoriumCLI
     no_commands do
 
       private
+
+      # Prompts to run `ssh-keygen`
+      def generate_pubkey?
+        answered_yes = yes?('Do you want to generate a new public pubkey?', :green)
+        run 'ssh-keygen', verbose: false if answered_yes
+      end
+
       # Prints public keys with indexes
       def print_keys(public_keys)
         public_keys.each_with_index do |f, i|
@@ -82,8 +101,10 @@ module ThoriumCLI
       end
 
       def copy_to_clipboard(content)
-        if run 'which pbcopy > /dev/null', verbose: false
-          run "pbcopy < #{content}"
+        say "(!) No content provided.", :red unless content
+        if (run 'which pbcopy > /dev/null', verbose: false)
+          run "pbcopy < #{content}", verbose: false
+          say "--> `#{content}` copied to your clipboard.", :blue
         else
           say 'pbcopy is not installed, cannot copy to clipboard', :red
         end

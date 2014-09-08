@@ -14,6 +14,10 @@ Simple workflow automation toolkit.
 
     gem install thorium
     
+With an alias included (optional):
+
+    gem install thorium && alias th=thorium
+    
 ## Updates
 
     gem update thorium    
@@ -25,8 +29,17 @@ Simple workflow automation toolkit.
 List local public keys and prompt to generate a new one if none are present
 
     thorium pubkeys
+    
+Copy the default `~/.ssh/id_rsa.pub` to your clipboard
 
-### Git CLI
+    thorium pubkey                                                                                               
+
+#### Example
+
+    $ thorium pubkey                                                                                               
+    ---> `~/.ssh/id_rsa.pub` copied to your clipboard.
+
+### Github CLI
 
 List github repositories for a user
 
@@ -35,6 +48,23 @@ List github repositories for a user
 List and clone github repositories for a user
 
     thorium git clone
+    
+#### Example
+
+    $ thorium git clone
+    Enter Github username:  git
+
+    Fetching Github repositories (git)...
+    ------------------------------------------
+    [1]  git            git@github.com:git/git.git            https://github.com/git/git.git
+    [2]  git-reference  git@github.com:git/git-reference.git  https://github.com/git/git-reference.git
+    [3]  git-scm.com    git@github.com:git/git-scm.com.git    https://github.com/git/git-scm.com.git
+    [4]  git.github.io  git@github.com:git/git.github.io.git  https://github.com/git/git.github.io.git
+    [5]  gitscm-old     git@github.com:git/gitscm-old.git     https://github.com/git/gitscm-old.git
+    [6]  hello-world    git@github.com:git/hello-world.git    https://github.com/git/hello-world.git
+    Which repository would you like to clone? (Enter to skip) [1, 2, 3, 4, 5, 6] 6
+    Select a protocol (ssh or https)? [s, h] s
+    
   
 ### Apache CLI
   
