@@ -10,6 +10,8 @@
 
 Simple workflow automation toolkit.
 
+Ruby 2.0 is needed.
+
 ## Installation
 
     gem install thorium
