@@ -3,7 +3,8 @@ module GitCLI
   # Listing and cloning of repositories (Github support included)
   class Git < Thor
     package_name 'Thorium | Git'
-    GH_API_URL = 'https://api.github.com'
+    GH_API_URL     = 'https://api.github.com'
+    GITIGNORE_REPO = 'https://raw.githubusercontent.com/github/gitignore/master/'
 
     require 'json'
     include Thor::Actions
@@ -14,8 +15,7 @@ module GitCLI
     def list
       gh_uname = ask('Enter Github username: ', :green)
       abort if gh_uname.empty?
-      puts "\nFetching Github repositories (#{gh_uname})..."
-      puts '------------------------------------------'
+      say msg = "Fetching Github repositories (#{gh_uname})..." and say '-' * msg.size
       @repos = get_gh_repos(gh_uname).each_with_index.map do |e, i|
         e.values_at('name', 'ssh_url', 'clone_url').unshift("[#{i + 1}]")
       end
@@ -38,26 +38,23 @@ module GitCLI
       run "git clone #{url}"
     end
 
-    desc 'ignore', 'Creates predefined gitignore file in current folder'
+    desc 'ignore', 'Creates a specific .gitignore file in the current folder'
     method_option aliases: 'i'
-    def init_ignore
-      say 'Fetching a list of predefined gitignore files...'
-      say '-' * 20
-      @files = get_gitignore_list.map { |e| e['name']  }
-      ignore_files = @files.each_with_index.map do |e, i|
-        ["[#{i + 1}]", File.basename(e, '.*')]
+    def ignore
+      say msg = 'Fetching a list of gitignore files...' and say '-' * msg.size
+      files = get_gitignore_list.map { |e| e['name'] }
+      gitignore_files = files.each_with_index.map do |e, i|
+        "[#{i}] #{File.basename(e, '.*')}"
       end
-
-      print_table ignore_files
-
+      print_in_columns gitignore_files
       ask_options = {
         mute_limit_set: true,
-        limited_to:     ('1'..@files.size.to_s).to_a,
+        limited_to:     ('1'..files.size.to_s).to_a,
         skip:           ''
       }
       answer = ask('Which file would you like to copy?', :green, ask_options)
-      abort if answer == ''
-      create_gitignore(Dir.pwd + '/.gitignore', @files[answer.to_i - 1])
+      abort if answer == ask_options[:skip]
+      create_gitignore(Dir.pwd + '/.gitignore', files[answer.to_i - 1])
     end
 
     no_commands do
@@ -72,7 +69,7 @@ module GitCLI
         JSON.parse File.read(gh_repos_filepath)
       end
 
-      # Fetches list of predefined gitignore files from github/gitignore repo
+      # Fetches a list of predefined gitignore files from github/gitignore repo
       def get_gitignore_list
         url = "#{GH_API_URL}/repos/github/gitignore/contents"
         gitignore_list_filepath = ENV['HOME'] + '/.thorium/gh_gitignore_list.json'
@@ -82,7 +79,7 @@ module GitCLI
 
       # Fetch gitignore file
       def create_gitignore(file_path, file_url)
-        url = 'https://raw.githubusercontent.com/github/gitignore/master/' + file_url
+        url = GITIGNORE_REPO + file_url
         get url, file_path
       end
     end

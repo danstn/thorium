@@ -19,9 +19,7 @@ class Thor
       def correct_answer(answer_set, options, color, statement)
         result = nil
         answers = answer_set.join(', ')
-
         statement += " [#{answers}]" unless options[:mute_limit_set]
-
         until result
           answer = ask_simply(statement, color, options)
           skipped = (options.key?(:skip) && (answer == options[:skip].chomp))
@@ -34,7 +32,6 @@ class Thor
             end
           end
         end
-
         result
       end
     end
