@@ -52,6 +52,37 @@ List and clone github repositories for a user
 
     thorium git clone
     
+### Runcom (rc files)
+
+#### All
+
+Run all runcom tasks: `vim`, `sqlite`
+
+    thorium runcom all
+
+#### Vim
+
+Update `.vimrc` with some essential options
+
+    thorium runcom vim
+   
+Default options:
+```
+syntax on
+```
+
+#### SQLite
+    
+Update `.sqliterc` with some essential options
+
+    thorium runcom sqlite
+
+Default options:    
+```
+.headers ON
+.mode column
+```    
+    
 #### Example
 
     $ thorium git clone
