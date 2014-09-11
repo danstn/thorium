@@ -41,18 +41,18 @@ module GitCLI
     desc 'init_ignore', 'Creates predefined gitignore file in current folder'
     def init_ignore
       say 'Fetching a list of predefined gitignore files...'
-      say '-'*20
+      say '-' * 20
       @files = get_gitignore_list.map { |e| e['name']  }
       ignore_files = @files.each_with_index.map do |e, i|
-        [ "[#{i+1}]", File.basename(e, '.*') ]
+        ["[#{i + 1}]", File.basename(e, '.*')]
       end
 
       print_table ignore_files
 
       ask_options = {
-        limited_to: ('1'..@files.size.to_s).to_a,
         mute_limit_set: true,
-        skip: ''
+        limited_to:     ('1'..@files.size.to_s).to_a,
+        skip:           ''
       }
       answer = ask('Which file would you like to copy?', :green, ask_options)
       abort if answer == ''
@@ -71,10 +71,10 @@ module GitCLI
         JSON.parse File.read(gh_repos_filepath)
       end
 
-      # Fetches list of predefined gitignore files from https://github.com/github/gitignore repo
+      # Fetches list of predefined gitignore files from github/gitignore repo
       def get_gitignore_list
         url = "#{GH_API_URL}/repos/github/gitignore/contents"
-        gitignore_list_filepath = ENV['HOME'] + "/.thorium/gh_gitignore_list.json"
+        gitignore_list_filepath = ENV['HOME'] + '/.thorium/gh_gitignore_list.json'
         get url, gitignore_list_filepath, verbose: false
         JSON.parse File.read(gitignore_list_filepath)
       end

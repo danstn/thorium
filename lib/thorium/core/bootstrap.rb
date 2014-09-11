@@ -30,7 +30,7 @@ class Thor
           result = answer_set.include?(answer) || skipped ? answer : nil
           unless result
             if options[:mute_limit_set]
-              say("Your response is invalid. Please try again.")
+              say('Your response is invalid. Please try again.')
             else
               say("Your response must be one of: [#{answers}]. Please try again.")
             end
