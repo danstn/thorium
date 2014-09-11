@@ -18,14 +18,22 @@ class Thor
 
       def correct_answer(answer_set, options, color, statement)
         result = nil
+        answers = answer_set.join(', ')
+
+        if !options[:mute_limit_set]
+          statement += " [#{answers}]"
+        end
 
         until result
-          answers = answer_set.join(', ')
-          answer = ask_simply("#{statement} [#{answers}]", color, options)
+          answer = ask_simply(statement, color, options)
           skipped = (options.key?(:skip) && (answer == options[:skip].chomp))
           result = answer_set.include?(answer) || skipped ? answer : nil
           unless result
-            say("Your response must be one of: [#{answers}]. Please try again.")
+            if options[:mute_limit_set]
+              say("Your response is invalid. Please try again.")
+            else
+              say("Your response must be one of: [#{answers}]. Please try again.")
+            end
           end
         end
 
