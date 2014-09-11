@@ -38,7 +38,8 @@ module GitCLI
       run "git clone #{url}"
     end
 
-    desc 'init_ignore', 'Creates predefined gitignore file in current folder'
+    desc 'ignore', 'Creates predefined gitignore file in current folder'
+    method_option aliases: "i"
     def init_ignore
       say 'Fetching a list of predefined gitignore files...'
       say '-' * 20
