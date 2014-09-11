@@ -20,9 +20,7 @@ class Thor
         result = nil
         answers = answer_set.join(', ')
 
-        if !options[:mute_limit_set]
-          statement += " [#{answers}]"
-        end
+        statement += " [#{answers}]" unless options[:mute_limit_set]
 
         until result
           answer = ask_simply(statement, color, options)

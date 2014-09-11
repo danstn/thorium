@@ -39,7 +39,7 @@ module GitCLI
     end
 
     desc 'ignore', 'Creates predefined gitignore file in current folder'
-    method_option aliases: "i"
+    method_option aliases: 'i'
     def init_ignore
       say 'Fetching a list of predefined gitignore files...'
       say '-' * 20
