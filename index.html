@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Thorium by dzotokan</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Thorium</h1>
+        <p>Workflow automation toolkit</p>
+
+        <p class="view"><a href="https://github.com/dzotokan/thorium">View the Project on GitHub <small>dzotokan/thorium</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/dzotokan/thorium/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dzotokan/thorium/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dzotokan/thorium">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>Ruby 2.0 is needed.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>gem install thorium
+</code></pre>
+
+<p>With an alias included (optional):</p>
+
+<pre><code>gem install thorium &amp;&amp; alias th=thorium
+</code></pre>
+
+<h2>
+<a name="updates" class="anchor" href="#updates"><span class="octicon octicon-link"></span></a>Updates</h2>
+
+<pre><code>gem update thorium    
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="common" class="anchor" href="#common"><span class="octicon octicon-link"></span></a>Common</h3>
+
+<p>List local public keys and prompt to generate a new one if none are present</p>
+
+<pre><code>thorium pubkeys
+</code></pre>
+
+<p>Copy the default <code>~/.ssh/id_rsa.pub</code> to your clipboard</p>
+
+<pre><code>thorium pubkey                                                                                               
+</code></pre>
+
+<h4>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>$ thorium pubkey                                  
+Use `thorium pubkeys` if you want to select a specific key.
+---&gt; `~/.ssh/id_rsa.pub` copied to your clipboard.
+</code></pre>
+
+<h3>
+<a name="github-cli" class="anchor" href="#github-cli"><span class="octicon octicon-link"></span></a>Github CLI</h3>
+
+<p>List github repositories for a user</p>
+
+<pre><code>thorium git list
+</code></pre>
+
+<p>List and clone github repositories for a user</p>
+
+<pre><code>thorium git clone
+</code></pre>
+
+<h3>
+<a name="runcom-rc-files" class="anchor" href="#runcom-rc-files"><span class="octicon octicon-link"></span></a>Runcom (rc files)</h3>
+
+<h4>
+<a name="all" class="anchor" href="#all"><span class="octicon octicon-link"></span></a>All</h4>
+
+<p>Run all runcom tasks: <code>vim</code>, <code>sqlite</code></p>
+
+<pre><code>thorium runcom all
+</code></pre>
+
+<h4>
+<a name="vim" class="anchor" href="#vim"><span class="octicon octicon-link"></span></a>Vim</h4>
+
+<p>Update <code>.vimrc</code> with some essential options</p>
+
+<pre><code>thorium runcom vim
+</code></pre>
+
+<p>Default options:</p>
+
+<pre><code>syntax on
+</code></pre>
+
+<h4>
+<a name="sqlite" class="anchor" href="#sqlite"><span class="octicon octicon-link"></span></a>SQLite</h4>
+
+<p>Update <code>.sqliterc</code> with some essential options</p>
+
+<pre><code>thorium runcom sqlite
+</code></pre>
+
+<p>Default options:    </p>
+
+<pre><code>.headers ON
+.mode column
+</code></pre>
+
+<h4>
+<a name="example-1" class="anchor" href="#example-1"><span class="octicon octicon-link"></span></a>Example</h4>
+
+<pre><code>$ thorium git clone
+Enter Github username:  git
+
+Fetching Github repositories (git)...
+------------------------------------------
+[1]  git            git@github.com:git/git.git            https://github.com/git/git.git
+[2]  git-reference  git@github.com:git/git-reference.git  https://github.com/git/git-reference.git
+[3]  git-scm.com    git@github.com:git/git-scm.com.git    https://github.com/git/git-scm.com.git
+[4]  git.github.io  git@github.com:git/git.github.io.git  https://github.com/git/git.github.io.git
+[5]  gitscm-old     git@github.com:git/gitscm-old.git     https://github.com/git/gitscm-old.git
+[6]  hello-world    git@github.com:git/hello-world.git    https://github.com/git/hello-world.git
+Which repository would you like to clone? (Enter to skip) [1, 2, 3, 4, 5, 6] 6
+Select a protocol (ssh or https)? [s, h] s
+</code></pre>
+
+<h3>
+<a name="apache-cli" class="anchor" href="#apache-cli"><span class="octicon octicon-link"></span></a>Apache CLI</h3>
+
+<p>Generic apache controller.
+Run <code>thorium apache</code> for more information.</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<pre><code>thorium help
+</code></pre>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Code is under the GPL3 license.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/dzotokan">dzotokan</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
