@@ -12,9 +12,13 @@ module GitCLI
     class_option :verbose, type: :boolean, default: 1
 
     desc 'list', 'Lists repositories (Github)'
-    def list
-      gh_uname = ask('Enter Github username: ', :green)
-      abort if gh_uname.empty?
+    def list(username = nil)
+      if username.nil?
+        gh_uname = ask('Enter Github username: ', :green)
+        abort if gh_uname.empty?
+      else
+        gh_uname = username
+      end
       say msg = "Fetching Github repositories (#{gh_uname})..." and say '-' * msg.size
       @repos = get_gh_repos(gh_uname).each_with_index.map do |e, i|
         e.values_at('name', 'ssh_url', 'clone_url').unshift("[#{i + 1}]")
@@ -23,8 +27,8 @@ module GitCLI
     end
 
     desc 'clone', 'Clones a repository from the list (Github)'
-    def clone
-      list
+    def clone(username = nil)
+      list(username)
       # Do not do anything if list is empty
       ask_options = { limited_to: ('1'..@repos.size.to_s).to_a, skip: '' }
       answer = ask('Which repository would you like to clone?', :green, ask_options)
