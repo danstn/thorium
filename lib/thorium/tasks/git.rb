@@ -44,7 +44,7 @@ module GitCLI
       say msg = 'Fetching a list of gitignore files...' and say '-' * msg.size
       files = get_gitignore_list.map { |e| e['name'] }
       gitignore_files = files.each_with_index.map do |e, i|
-        "[#{i}] #{File.basename(e, '.*')}"
+        "[#{i + 1}] #{File.basename(e, '.*')}"
       end
       print_in_columns gitignore_files
       ask_options = {
