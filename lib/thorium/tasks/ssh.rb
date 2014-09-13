@@ -11,7 +11,7 @@ module SshCLI
       path = '~/.ssh/id_rsa.pub'
       file = Dir.glob(File.expand_path(path)).first
       if file
-        say "Use `thorium pubkeys` if you want to select a specific key.", :yellow
+        say 'Use `thorium pubkeys` if you want to select a specific key.', :yellow
         copy_to_clipboard file
       else
         say "File `#{path}` has not been found.", :red
@@ -54,8 +54,8 @@ module SshCLI
       end
 
       def copy_to_clipboard(content)
-        say "(!) No content provided.", :red unless content
-        if (run 'which pbcopy > /dev/null', verbose: false)
+        say '(!) No content provided.', :red unless content
+        if run('which pbcopy > /dev/null', verbose: false)
           run "pbcopy < #{content}", verbose: false
           say "--> `#{content}` copied to your clipboard.", :blue
         else
