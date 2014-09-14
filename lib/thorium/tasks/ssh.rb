@@ -1,6 +1,5 @@
 module SshCLI
-  # Git tasks package
-  # Listing and cloning of repositories (Github support included)
+  # SSH-related tasks package
   class Ssh < Thor
     package_name 'Thorium | SSH'
 
