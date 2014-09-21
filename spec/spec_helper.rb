@@ -1,3 +1,5 @@
 require 'thorium'
 
-RSpec.configure {}
+RSpec.configure do |config|
+  config.formatter = :documentation
+end
