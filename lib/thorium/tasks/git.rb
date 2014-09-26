@@ -34,11 +34,7 @@ module GitCLI
       answer = ask('Which repository would you like to clone?', :green, ask_options)
       abort if answer == ask_options[:skip]
       protocol = ask('Select a protocol (ssh or https)?', :green, limited_to: %w(s h))
-      url = if protocol == 's'
-        @repos[answer.to_i - 1][2]
-      else
-        @repos[answer.to_i - 1][3]
-      end
+      url = protocol == 's' ? @repos[answer.to_i - 1][2] : @repos[answer.to_i - 1][3]
       run "git clone #{url}"
     end
 
