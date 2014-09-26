@@ -51,6 +51,10 @@ List github repositories for a user
 List and clone github repositories for a user
 
     thorium git clone
+
+Create a project-specific `.gitignore` file
+
+    thorium git ignore    
     
 ### Runcom (rc files)
 
