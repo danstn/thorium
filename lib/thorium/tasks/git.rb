@@ -30,7 +30,7 @@ module GitCLI
     def clone(username = nil)
       list(username)
       # Do not do anything if list is empty
-      ask_options = { limited_to: ('1'..@repos.size.to_s).to_a, skip: '' }
+      ask_options = { limited_to: ('1'..@repos.size.to_s).to_a, skip: '', mute_limit_set: true }
       answer = ask('Which repository would you like to clone?', :green, ask_options)
       abort if answer == ask_options[:skip]
       protocol = ask('Select a protocol (ssh or https)?', :green, limited_to: %w(s h))
