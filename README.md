@@ -52,7 +52,7 @@ List and clone github repositories for a user
 
     thorium git clone
 
-Create a project-specific `.gitignore` file
+Pull a project-specific `.gitignore` file into current directory
 
     thorium git ignore    
     
