@@ -54,7 +54,23 @@ List and clone github repositories for a user
 
 Pull a project-specific `.gitignore` file into current directory
 
-    thorium git ignore    
+    thorium git ignore
+    
+#### Example
+
+```
+$ thorium git ignore                                                                                                
+Fetching a list of gitignore files...
+-------------------------------------
+[1] Actionscript            [2] Ada                     [3] Agda                    [4] Android                 [5] AppceleratorTitanium
+[6] ArchLinuxPackages       [7] Autotools               [8] C++                     [9] C                       [10] CFWheels
+[11] CMake                  [12] CONTRIBUTING           [13] CakePHP                [14] ChefCookbook           [15] Clojure
+[16] CodeIgniter            [17] CommonLisp             [18] Composer               [19] Concrete5              [20] Coq
+[21] CraftCMS               [22] DM                     [23] Dart                   [24] Delphi                 [25] Drupal
+...
+Which file would you like to copy? (Enter to skip) 8
+      create  .gitignore
+```
     
 ### Runcom (rc files)
 
