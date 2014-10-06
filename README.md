@@ -34,7 +34,7 @@ List local public keys and prompt to generate a new one if none are present
     
 Copy the default `~/.ssh/id_rsa.pub` to your clipboard
 
-    thorium pubkey                                                                                               
+    thorium pubkey
 
 #### Example
 
